@@ -1,0 +1,67 @@
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D  # Required for 3D plotting
+
+def E_field(t): ## define time varying E field
+    ## oscillates with frequency f (Hz)
+    f = 1e9  ## 1 GHz example
+    omega = 2 * np.pi * f
+    E0 = np.array([0, 6, 7])  ## amplitude vector
+    return E0 * np.sin(omega * t)
+
+def B_field(t): ## likewise for B field
+    ## constant plus oscillating part
+    B0 = np.array([1, 0, 0])
+    f = 5e8  # 0.5 GHz
+    omega = 2 * np.pi * f
+    B_osc = np.array([0.5, 0, 0]) * np.cos(omega * t)
+    return B0 + B_osc
+
+
+v0 = np.array([5, 3, 10]) ## define the initial velocity of the particle 
+m = 9.11e-31 ## set mass
+q = 1.60e-19 ## charge
+dt = 1e-13 ## time step
+
+
+v = v0
+time = 1000
+x = np.zeros((time, 3))
+x[0] = np.array([0.0, 0.0, 0.0])  ## set initial position
+
+for t in range(1, time):
+    B = B_field(t)
+    E = E_field(t)
+    vxB = [ v[1]*B[2] - v[2]*B[1], v[2]*B[0] - v[0]*B[2], v[0]*B[1] - v[1]*B[0] ] ## work out cross product of v and B
+    F = q * (E + vxB)
+    a = F / m
+    v = v + a * dt
+    x[t] = x[t-1] + v * dt
+
+
+
+## create 3D figure and axis
+fig = plt.figure(figsize=(10, 6))
+ax = fig.add_subplot(111, projection='3d')
+
+## plot trajectory
+ax.plot(x[:, 0], x[:, 1], x[:, 2], color='blue', linewidth=2)
+
+## add title and axes
+ax.set_title("3D Trajectory of a Charged Particle in E and B Fields", fontsize=14)
+ax.set_xlabel("x (m)", fontsize=12)
+ax.set_ylabel("y (m)", fontsize=12)
+ax.set_zlabel("z (m)", fontsize=12)
+
+## equal aspect ratio (visually accurate)
+ax.set_box_aspect([np.ptp(a) for a in [x[:, 0], x[:, 1], x[:, 2]]])  # ptp = peak-to-peak range
+
+## grid and view
+ax.grid(True)
+ax.view_init(elev=30, azim=135)  # Adjust angles for a better view
+
+plt.tight_layout()
+plt.show()
+
+x
