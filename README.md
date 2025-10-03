@@ -4,16 +4,13 @@ This project models the Lorentz force over time for a charged particle in time v
 
 This simulation is based on the Lorentz force equation:
 
-\[
-\vec{F} = q(\vec{E}(t) + \vec{v} \times \vec{B}(t))
-\]
+$F = q(E(t) + v \times B(t))$
 
 Where:
-- \( \vec{E}(t) \): Electric field (can be time-dependent)
-- \( \vec{B}(t) \): Magnetic field (can be time-dependent)
-- \( q \): Particle charge
-- \( m \): Particle mass
-
+- $E(t)$: Electric field (can be time-dependent)
+- $B(t)$: Magnetic field (can be time-dependent)
+- $q$: Particle charge
+- $m$: Particle mass
 The motion is updated using **Euler's method** of numerical integration
 
 ## Features
@@ -25,6 +22,6 @@ The motion is updated using **Euler's method** of numerical integration
 
 ## Requirements
 
-- Python 3.7+
+- Python 3
 - NumPy
 - Matplotlib
