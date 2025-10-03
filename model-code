@@ -54,9 +54,6 @@ ax.set_xlabel("x (m)", fontsize=12)
 ax.set_ylabel("y (m)", fontsize=12)
 ax.set_zlabel("z (m)", fontsize=12)
 
-## equal aspect ratio (visually accurate)
-ax.set_box_aspect([np.ptp(a) for a in [x[:, 0], x[:, 1], x[:, 2]]])  # ptp = peak-to-peak range
-
 ## grid and view
 ax.grid(True)
 ax.view_init(elev=30, azim=135)  # Adjust angles for a better view
