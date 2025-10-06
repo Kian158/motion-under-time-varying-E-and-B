@@ -1,7 +1,7 @@
 # Charged particle simulator for time varying oscillatory E and B fields
 
 This project models the Lorentz force over time for a charged particle in time varying (or constant) E and B vector fields, and then visualises the trajectory in a 3D plot (All in Python)
-I was originally only utilising constant E and B fields, but later decided to extend it to time varying ones. The hardest part was the differential equation approximations, but this project definitely has made me more confident. 
+I was originally only utilising constant E and B fields, but later decided to extend it to time varying ones. The hardest part was the differential equation approximations, but this project definitely has made me more confident. I used the Euler method of approximation, which seemed to work for this purpose but can be prone to introduce numerical errors over time. I may upgrade to a more complex approximation such as Verlet in the future. All starting conditions are customisable.
 
 
 <img width="250" height="300" alt="example 3" src="https://github.com/user-attachments/assets/71e59904-c080-4962-a2c9-62abe7d82e6e" />
